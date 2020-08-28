@@ -1,5 +1,5 @@
 package org.example.enums;
 
 public enum TrainingAge {
-    Novice, Intermediate, Advanced, Custom
+    Novice, Intermediate, Advanced
 }
