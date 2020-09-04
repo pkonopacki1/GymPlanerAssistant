@@ -9,14 +9,16 @@ public class ExerciseField {
     private int maxRepPercent;
     private int rpe;
 
-    public ExerciseField(int sets, int[] reps, int maxRepPercent, int rpe) {
+    public ExerciseField(Exercise exerciseName, int sets, int[] reps, int maxRepPercent, int rpe) {
+        this.exerciseName = exerciseName;
         this.sets = sets;
         this.reps = reps;
         this.maxRepPercent = maxRepPercent;
         this.rpe = rpe;
     }
 
-    public ExerciseField(int sets, int reps, int maxRepPercent, int rpe) {
+    public ExerciseField(Exercise exerciseName, int sets, int reps, int maxRepPercent, int rpe) {
+        this.exerciseName = exerciseName;
         this.sets = sets;
         this.maxRepPercent = maxRepPercent;
         this.rpe = rpe;

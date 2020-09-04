@@ -7,40 +7,37 @@ import java.util.*;
 public class Training {
     // In data
     private String name;
-    private int days;
     private TrainingAge trainingAge;
     private int setsPerGroup;
     private TrainingType trainingType;
 
     // Out data
     private int estimatedTime;
-    private List<List<ExerciseField>> trainingDays;
+    private Map<String, List<ExerciseField>> trainingDays;
     private Map<MuscleGroup, Integer> musclesVolume;
     private Map<StrengthMuscleGroup, Integer> strengthVolume;
 
 
     // Constructors
-    public Training(String name, int days, TrainingAge trainingAge, int setsPerGroup, TrainingType trainingType) {
+    public Training(String name, TrainingAge trainingAge, int setsPerGroup, TrainingType trainingType) {
         this.name = name;
-        this.days = days;
         this.trainingAge = trainingAge;
         this.setsPerGroup = setsPerGroup;
         this.trainingType = trainingType;
 
-        trainingDays = new ArrayList<>();
+        trainingDays = new HashMap<>();
         musclesVolume = new HashMap<>();
         strengthVolume = new HashMap<>();
 
         fillMuscleVolume();
     }
 
-    public Training(String name, int days, TrainingAge trainingAge, TrainingType trainingType) {
+    public Training(String name, TrainingAge trainingAge, TrainingType trainingType) {
         this.name = name;
-        this.days = days;
         this.trainingAge = trainingAge;
         this.trainingType = trainingType;
 
-        trainingDays = new ArrayList<>();
+        trainingDays = new HashMap<>();
         musclesVolume = new HashMap<>();
         strengthVolume = new HashMap<>();
 
@@ -60,6 +57,10 @@ public class Training {
     }
 
     // Functionality
+
+    /**
+     * Adds all muscle groups to this training
+     */
     private void fillMuscleVolume() {
         EnumSet
                 .allOf(MuscleGroup.class)
@@ -69,8 +70,11 @@ public class Training {
                 .forEach(strengthMuscleGroup -> strengthVolume.put(strengthMuscleGroup, 0));
     }
 
-    private void calculateMusclesVolume() {
-        for (List<ExerciseField> trainingDay : trainingDays) {
+    /**
+     * Calculates training volume
+     */
+    private void calculateVolume() {
+        for (List<ExerciseField> trainingDay : trainingDays.values()) {
             for (ExerciseField exrcFld : trainingDay) {
                 addExerciseVolume(exrcFld);
             }
@@ -98,17 +102,32 @@ public class Training {
 
     }
 
-    public void generateTraining() {
-
-
+    /**
+     * Add new training day to this training
+     */
+    public void addTrainingDay(String name) {
+        trainingDays.put(name, new ArrayList<>());
     }
 
-    public int getDays() {
-        return days;
+    public void addExercise(String dayName, ExerciseField exerciseField) {
+        trainingDays.get(dayName).add(exerciseField);
+        calculateVolume();
     }
 
-    public void setDays(int days) {
-        this.days = days;
+    public Map<MuscleGroup, Integer> getMusclesVolume() {
+        return musclesVolume;
+    }
+
+    public Map<StrengthMuscleGroup, Integer> getStrengthVolume() {
+        return strengthVolume;
+    }
+
+    public Integer getMuscleVolume(MuscleGroup muscleGroup) {
+        return musclesVolume.get(muscleGroup);
+    }
+
+    public Integer getStrengthGroupVolume(StrengthMuscleGroup strengthMuscleGroup) {
+        return strengthVolume.get(strengthMuscleGroup);
     }
 
     public TrainingAge getTrainingAge() {
