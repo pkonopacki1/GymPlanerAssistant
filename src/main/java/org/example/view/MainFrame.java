@@ -4,13 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    SettingsPanel settingsPanel;
+    MenuBar menuBar;
+    TrainingWorkoutPanel workoutPanel;
 
     public MainFrame() {
-        settingsPanel = new SettingsPanel();
+        menuBar = new MenuBar();
+        workoutPanel = new TrainingWorkoutPanel();
 
-        add(settingsPanel, BorderLayout.WEST);
-
+        setJMenuBar(menuBar);
+        add(workoutPanel, BorderLayout.CENTER);
 
         setTitle("Gym Planer Assistant");
         setExtendedState(JFrame.MAXIMIZED_BOTH);

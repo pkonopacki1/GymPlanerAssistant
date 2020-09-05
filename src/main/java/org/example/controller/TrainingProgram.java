@@ -4,7 +4,7 @@ import org.example.enums.*;
 
 import java.util.*;
 
-public class Training {
+public class TrainingProgram {
     // In data
     private String name;
     private TrainingAge trainingAge;
@@ -19,7 +19,7 @@ public class Training {
 
 
     // Constructors
-    public Training(String name, TrainingAge trainingAge, int setsPerGroup, TrainingType trainingType) {
+    public TrainingProgram(String name, TrainingAge trainingAge, int setsPerGroup, TrainingType trainingType) {
         this.name = name;
         this.trainingAge = trainingAge;
         this.setsPerGroup = setsPerGroup;
@@ -32,7 +32,7 @@ public class Training {
         fillMuscleVolume();
     }
 
-    public Training(String name, TrainingAge trainingAge, TrainingType trainingType) {
+    public TrainingProgram(String name, TrainingAge trainingAge, TrainingType trainingType) {
         this.name = name;
         this.trainingAge = trainingAge;
         this.trainingType = trainingType;

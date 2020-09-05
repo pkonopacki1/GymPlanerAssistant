@@ -2,6 +2,8 @@ package org.example.controller;
 
 import org.example.enums.Exercise;
 
+import java.util.Arrays;
+
 public class ExerciseField {
     private Exercise exerciseName;
     private int sets;
@@ -24,9 +26,7 @@ public class ExerciseField {
         this.rpe = rpe;
         this.reps = new int[sets];
 
-        for (int i: this.reps ) {
-            i = reps;
-        }
+        Arrays.fill(this.reps, reps);
     }
 
     public Exercise getExerciseName() {
